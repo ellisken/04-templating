@@ -53,6 +53,17 @@
             </li>
           </ul>
         </div>
+        <script id="article-template" type="text/x-handlebars-template">
+          <header>
+            <h1>{{title}}</h1>
+            <div>
+              By <address><a href="">{{author}}</a></address>
+              published <time datetime="2000-01-01">{{publishTime}}</time>
+            </div>
+          </header>
+          <secton class="article-body">{{body}}</secton>
+          <a href="#" class="read-on">Read on &rarr;</a>
+        </script>
       </section>
       <section id="about" class="tab-content">
         <header>
@@ -73,8 +84,8 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- TODO: Include Handlebars.JS from a CDN -->
-
+    <!-- DONE: Include Handlebars.JS from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
     <script src="scripts/blogArticles.js"></script>
     <script src="scripts/article.js"></script>
     <script src="scripts/articleView.js"></script>
