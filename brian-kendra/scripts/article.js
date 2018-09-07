@@ -22,6 +22,8 @@ Article.prototype.toHtml = function() {
   const template = Handlebars.compile(source);
   this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
   this.publishStatus = this.publishedOn ? `published ${this.daysAgo} days ago` : '(draft)';
+  this.authorAtt = this.author;
+  this.categoryAtt = this.category;
 
   // REVIEW: The ternary operator above accomplishes this same logic.
   // if(this.publishedOn) {
