@@ -26,11 +26,11 @@ articleView.populateFilters = function() {
   });
 };
 
-articleView.handleAuthorFilter = function() {
-  $('#author-filter').on('change', function() {
-    if ($(this).val()) {
+articleView.handleAuthorFilter = () => {
+  $('#author-filter').on('change', (e) => {
+    if ($(e.target).val()) {
       $('article').hide();
-      $(`article[data-author="${$(this).val()}"]`).fadeIn();
+      $(`article[data-author="${$(e.target).val()}"]`).fadeIn();
     } else {
       $('article').fadeIn();
       $('article.template').hide();
@@ -39,11 +39,11 @@ articleView.handleAuthorFilter = function() {
   });
 };
 
-articleView.handleCategoryFilter = function() {
-  $('#category-filter').on('change', function() {
-    if ($(this).val()) {
+articleView.handleCategoryFilter = () => {
+  $('#category-filter').on('change', (e) => {
+    if ($(e.target).val()) {
       $('article').hide();
-      $(`article[data-category="${$(this).val()}"]`).fadeIn();
+      $(`article[data-category="${$(e.target).val()}"]`).fadeIn();
     } else {
       $('article').fadeIn();
       $('article.template').hide();
@@ -79,10 +79,10 @@ articleView.setTeasers = function() {
   });
 };
 
-$(document).ready(function() {
+$(document).ready(()=> {
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
   articleView.handleMainNav();
   articleView.setTeasers();
-})
+});
