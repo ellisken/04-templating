@@ -2,13 +2,14 @@
 
 let articleView = {};
 
-// TODO: Where possible, refactor methods into arrow functions, including the document.ready() method at the bottom.
+// DONE: Where possible, refactor methods into arrow functions, including the document.ready() method at the bottom.
 
 // COMMENT: How do arrow functions affect the context of "this"? How did you determine if a function could be refactored?
-// PUT YOUR RESPONSE HERE
+// Arrow functions don't allow usage of the contextual this. Functions can be refactored into
+// arrow functions if they are event handlers or do not use the contextual this. With event handlers, you can wrap the event parameter in jquery to create a jquery object, or use the event as you normally would.
 
-articleView.populateFilters = function() {
-  $('article').each(function() {
+articleView.populateFilters = () => {
+  $('article').each( function() {
     if (!$(this).hasClass('template')) {
       let val = $(this).find('address a').text();
       let optionTag = `<option value="${val}">${val}</option>`;
@@ -52,34 +53,34 @@ articleView.handleCategoryFilter = () => {
   });
 };
 
-articleView.handleMainNav = function() {
-  $('nav').on('click', '.tab', function(e) {
-    e.preventDefault();
+articleView.handleMainNav = () => {
+  $('nav').on('click', '.tab', (e) => {
+    e.currentTarget.querySelector('a').preventDefault;
     $('.tab-content').hide();
-    $(`#${$(this).data('content')}`).fadeIn();
+    $(`#${$(e.currentTarget).data('content')}`).fadeIn();
   });
 
   $('nav .tab:first').click();
 };
 
-articleView.setTeasers = function() {
+articleView.setTeasers = () => {
   $('.article-body *:nth-of-type(n+2)').hide();
-  $('article').on('click', 'a.read-on', function(e) {
+  $('article').on('click', 'a.read-on', (e) => {
     e.preventDefault();
-    if ($(this).text() === 'Read on →') {
-      $(this).parent().find('*').fadeIn();
-      $(this).html('Show Less &larr;');
+    if ($(e.currentTarget).text() === 'Read on →') {
+      $(e.currentTarget).parent().find('*').fadeIn();
+      $(e.currentTarget).html('Show Less &larr;');
     } else {
       $('body').animate({
-        scrollTop: ($(this).parent().offset().top)
+        scrollTop: ($(e.currentTarget).parent().offset().top)
       },200);
-      $(this).html('Read on &rarr;');
-      $(this).parent().find('.article-body *:nth-of-type(n+2)').hide();
+      $(e.currentTarget).html('Read on &rarr;');
+      $(e.currentTarget).parent().find('.article-body *:nth-of-type(n+2)').hide();
     }
   });
 };
 
-$(document).ready(()=> {
+$(document).ready( () => {
   articleView.populateFilters();
   articleView.handleCategoryFilter();
   articleView.handleAuthorFilter();
